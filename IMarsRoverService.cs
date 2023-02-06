@@ -2,6 +2,6 @@
 {
     public interface IMarsRoverService
     {
-        void Run(string num);
+        void Run(string fileName);
     }
 }

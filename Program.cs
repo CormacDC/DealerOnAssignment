@@ -9,7 +9,7 @@ namespace DealerOnAssignment
     {
         static void Main(string[] args)
         {
-            var num = args[0];
+            var inputFileName = args.Length == 0 ? args[0] : null;
 
             var host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
@@ -20,7 +20,7 @@ namespace DealerOnAssignment
                 .Build();
 
             var svc = ActivatorUtilities.CreateInstance<MarsRoverService>(host.Services);
-            svc.Run(num);
+            svc.Run(inputFileName);
         }
     }
 }
