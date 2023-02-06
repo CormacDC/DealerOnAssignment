@@ -30,6 +30,10 @@ namespace DealerOnAssignment
 
             var gridSizeVector = ConvertGridSizeToVector(inputArray[0]);
 
+            if (!Directory.Exists("Outputs/"))
+            {
+                Directory.CreateDirectory("Outputs/");
+            }
             var outputFileName = $"Outputs/output-{DateTime.Now:yyMMdd-hhmmss}.txt";
 
             // calculate final bearing of each rover

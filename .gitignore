@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Application Generated Files
+Outputs/
+
 # Visual Studio Code Files
 .vscode/
 
