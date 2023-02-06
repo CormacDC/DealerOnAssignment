@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.IO;
 
 namespace DealerOnAssignment
 {
