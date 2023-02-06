@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Visual Studio Code Files
+.vscode/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -39,6 +42,7 @@ bld/
 
 # Visual Studio 2017 auto generated files
 Generated\ Files/
+Properties/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
