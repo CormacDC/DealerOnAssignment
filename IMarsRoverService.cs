@@ -10,5 +10,6 @@ namespace DealerOnAssignment
         Vector3 GetFinalBearing(Vector2 gridSizeVector, Vector3 initialBearing, string directions);
         Vector3 MoveRover(Vector3 currentBearing, Vector2 gridSizeVector);
         void LogFinalBearing(Vector3 finalBearing, string outputFileName);
+        string CreateFinalBearingMessage(Vector3 finalBearing);
     }
 }

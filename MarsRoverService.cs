@@ -152,6 +152,16 @@ namespace DealerOnAssignment
 
         public void LogFinalBearing(Vector3 finalBearing, string outputFileName)
         {
+            var finalBearingString = CreateFinalBearingMessage(finalBearing);
+
+            Console.WriteLine($"Final Bearing: {finalBearingString}");
+
+            using StreamWriter w = File.AppendText(outputFileName);
+            w.WriteLine(finalBearingString);
+        }
+
+        public string CreateFinalBearingMessage(Vector3 finalBearing)
+        {
             var finalDirection = finalBearing.Z switch
             {
                 4 => "N",
@@ -160,12 +170,7 @@ namespace DealerOnAssignment
                 _ => "W"
             };
 
-            var finalBearingString = $"{finalBearing.X} {finalBearing.Y} {finalDirection}";
-
-            Console.WriteLine($"Final Bearing: {finalBearingString}");
-
-            using StreamWriter w = File.AppendText(outputFileName);
-            w.WriteLine(finalBearingString);
+            return $"{finalBearing.X} {finalBearing.Y} {finalDirection}";
         }
     }
 }
