@@ -19,6 +19,13 @@ namespace DealerOnAssignment
         {
             _log.LogInformation("Start moving rovers...");
 
+            // create output directory (if not exists) & get unique filename
+            if (!Directory.Exists("Outputs/"))
+            {
+                Directory.CreateDirectory("Outputs/");
+            }
+            var outputFileName = $"Outputs/output-{DateTime.Now:yyMMdd-hhmmss}.txt";
+
             // get the text from the input file
             var inputFileName = fileName ?? _config.GetValue<string>("InputFileName")!;
 
@@ -29,12 +36,6 @@ namespace DealerOnAssignment
             );
 
             var gridSizeVector = ConvertGridSizeToVector(inputArray[0]);
-
-            if (!Directory.Exists("Outputs/"))
-            {
-                Directory.CreateDirectory("Outputs/");
-            }
-            var outputFileName = $"Outputs/output-{DateTime.Now:yyMMdd-hhmmss}.txt";
 
             // calculate final bearing of each rover
             for (int i = 1; i < inputArray.Length - 1; i += 2)
@@ -103,8 +104,7 @@ namespace DealerOnAssignment
             switch (currentBearing.Z)
             {
                 case 4:
-                    if (currentBearing.Y < gridSizeVector.Y + 0.5
-                        && currentBearing.Y > gridSizeVector.Y - 0.5)
+                    if (Math.Abs(currentBearing.Y - gridSizeVector.Y) < 0.001)
                     {
                         _log.LogWarning(edgeWarning);
                         return currentBearing;
@@ -115,8 +115,7 @@ namespace DealerOnAssignment
                         return Vector3.Add(currentBearing, new Vector3(0, 1, 0));
                     }
                 case 5:
-                    if (currentBearing.X < gridSizeVector.X + 0.5
-                        && currentBearing.X > gridSizeVector.X - 0.5)
+                    if (Math.Abs(currentBearing.X - gridSizeVector.X) < 0.001)
                     {
                         _log.LogWarning(edgeWarning);
                         return currentBearing;
@@ -127,7 +126,7 @@ namespace DealerOnAssignment
                         return Vector3.Add(currentBearing, new Vector3(1, 0, 0));
                     }
                 case 6:
-                    if (currentBearing.Y < 0.5 && currentBearing.Y > -0.5)
+                    if (Math.Abs(currentBearing.Y) < 0.001)
                     {
                         _log.LogWarning(edgeWarning);
                         return currentBearing;
@@ -138,7 +137,7 @@ namespace DealerOnAssignment
                         return Vector3.Add(currentBearing, new Vector3(0, -1, 0));
                     }
                 default:
-                    if (currentBearing.X < 0.5 && currentBearing.X > -0.5)
+                    if (Math.Abs(currentBearing.X) < 0.001)
                     {
                         _log.LogWarning(edgeWarning);
                         return currentBearing;

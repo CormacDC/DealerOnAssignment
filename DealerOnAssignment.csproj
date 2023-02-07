@@ -13,6 +13,7 @@
 
   <ItemGroup>
 	<Folder Include="Inputs\" />
+	<Folder Include="Outputs\" />
   </ItemGroup>
 
 </Project>
