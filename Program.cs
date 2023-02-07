@@ -18,7 +18,7 @@ namespace DealerOnAssignment
                 .Build();
 
             var svc = ActivatorUtilities.CreateInstance<MarsRoverService>(host.Services);
-            svc.Run(inputFileName);
+            svc.RunRovers(inputFileName);
         }
     }
 }

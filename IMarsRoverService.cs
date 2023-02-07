@@ -4,7 +4,7 @@ namespace DealerOnAssignment
 {
     public interface IMarsRoverService
     {
-        void Run(string fileName);
+        void RunRovers(string fileName);
         Vector2 ConvertGridSizeToVector(string gridSize);
         Vector3 ConvertStringBearingToVector(string bearing);
         Vector3 GetFinalBearing(Vector2 gridSizeVector, Vector3 initialBearing, string directions);

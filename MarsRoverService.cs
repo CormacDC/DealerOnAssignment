@@ -15,7 +15,7 @@ namespace DealerOnAssignment
             _config = config;
         }
 
-        public void Run(string? fileName)
+        public void RunRovers(string? fileName)
         {
             _log.LogInformation("Start moving rovers...");
 
@@ -35,13 +35,13 @@ namespace DealerOnAssignment
                 StringSplitOptions.None
             );
 
+            // calculate final bearing of each rover
             var gridSizeVector = ConvertGridSizeToVector(inputArray[0]);
 
-            // calculate final bearing of each rover
             for (int i = 1; i < inputArray.Length - 1; i += 2)
             {
                 var initialBearing = ConvertStringBearingToVector(inputArray[i]);
-                Console.WriteLine($"Initial Bearing: {initialBearing.X} {initialBearing.Y} {initialBearing.Z}");
+
                 var directions = inputArray[i + 1];
 
                 var finalBearing = GetFinalBearing(gridSizeVector, initialBearing, directions);
@@ -111,7 +111,6 @@ namespace DealerOnAssignment
                     }
                     else
                     {
-                        Console.WriteLine("Moved 1 space North");
                         return Vector3.Add(currentBearing, new Vector3(0, 1, 0));
                     }
                 case 5:
@@ -122,7 +121,6 @@ namespace DealerOnAssignment
                     }
                     else
                     {
-                        Console.WriteLine("Moved 1 space East");
                         return Vector3.Add(currentBearing, new Vector3(1, 0, 0));
                     }
                 case 6:
@@ -133,7 +131,6 @@ namespace DealerOnAssignment
                     }
                     else
                     {
-                        Console.WriteLine("Moved 1 space South");
                         return Vector3.Add(currentBearing, new Vector3(0, -1, 0));
                     }
                 default:
@@ -144,7 +141,6 @@ namespace DealerOnAssignment
                     }
                     else
                     {
-                        Console.WriteLine("Moved 1 space West");
                         return Vector3.Add(currentBearing, new Vector3(-1, 0, 0));
                     }
             }
@@ -153,8 +149,6 @@ namespace DealerOnAssignment
         public void LogFinalBearing(Vector3 finalBearing, string outputFileName)
         {
             var finalBearingString = CreateFinalBearingMessage(finalBearing);
-
-            Console.WriteLine($"Final Bearing: {finalBearingString}");
 
             using StreamWriter w = File.AppendText(outputFileName);
             w.WriteLine(finalBearingString);
