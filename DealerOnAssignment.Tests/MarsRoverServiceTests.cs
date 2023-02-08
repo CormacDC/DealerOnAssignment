@@ -83,4 +83,17 @@ public class MarsRoverServiceTests
                     && finalBearingVector.Y - expectedBearing[1] < 0.001
                     && finalBearingVector.Z - expectedBearing[2] < 0.001);
     }
+
+    [Theory]
+    [InlineData(new[] { (float)0, 0, 4 }, "0 0 N")]
+    public void CreateFinalBearingMessage_ValidInput_CorrectStringOutput(
+        float[] finalBearing,
+        string expectedMessage)
+    {
+        var finalBearingVector = new Vector3(finalBearing[0], finalBearing[1], finalBearing[2]);
+
+        var message = _MarsRoverService.CreateFinalBearingMessage(finalBearingVector);
+
+        Assert.True(message == expectedMessage);
+    }
 }
