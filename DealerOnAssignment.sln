@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DealerOnAssignment", "DealerOnAssignment.csproj", "{AF8541FE-277B-47D6-AF5A-165A99828085}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DealerOnAssignment.Tests", "MarsRoverService.Tests\DealerOnAssignment.Tests.csproj", "{517565C4-72A4-47A8-BEBA-5560F13C4FDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DealerOnAssignment.Tests", "DealerOnAssignment.Tests\DealerOnAssignment.Tests.csproj", "{517565C4-72A4-47A8-BEBA-5560F13C4FDB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{85C6D5DB-2549-4288-ADFF-CA19C60EA483}"
 	ProjectSection(SolutionItems) = preProject
