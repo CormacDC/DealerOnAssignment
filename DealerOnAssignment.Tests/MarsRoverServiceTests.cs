@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Numerics;
-using Xunit.Sdk;
 
 namespace DealerOnAssignment.Tests;
 
@@ -53,6 +52,8 @@ public class MarsRoverServiceTests
     [InlineData(new[] { (float)5, 5 }, new[] { (float)1, 2, 4 }, "LMLMLMLMM", new[] { (float)1, 3, 4 })]
     [InlineData(new[] { (float)5, 5 }, new[] { (float)3, 3, 5 }, "MMRMMRMRRM", new[] { (float)5, 1, 5 })]
     [InlineData(new[] { (float)5, 5 }, new[] { (float)3, 3, 5 }, "MMRMMRMRRMMMM", new[] { (float)5, 1, 5 })]
+    [InlineData(new[] { (float)5, 5 }, new[] { (float)3, 3, 5 }, "", new[] { (float)3, 3, 5 })]
+    [InlineData(new[] { (float)5, 5 }, new[] { (float)3, 3, 5 }, "LRLRRLRLRLRRRRRRRLLLL", new[] { (float)3, 3, 5 })]
     public void GetFinalBearing_ValidInput_CorrectVectorOut(
         float[] gridSize, float[] initialBearing, string directions, 
         float[] expectedBearing)
@@ -70,6 +71,13 @@ public class MarsRoverServiceTests
 
     [Theory]
     [InlineData(new[] { (float)0, 0, 4 }, new[] { (float)5, 5 }, new[] { (float)0, 1, 4 })]
+    [InlineData(new[] { (float)5, 7, 5 }, new[] { (float)10, 10 }, new[] { (float)6, 7, 5 })]
+    [InlineData(new[] { (float)4, 10, 6 }, new[] { (float)10, 10 }, new[] { (float)4, 9, 6 })]
+    [InlineData(new[] { (float)1, 10, 7 }, new[] { (float)10, 10 }, new[] { (float)0, 10, 7 })]
+    [InlineData(new[] { (float)5, 5, 4 }, new[] { (float)5, 5 }, new[] { (float)5, 5, 4 })]
+    [InlineData(new[] { (float)5, 5, 5 }, new[] { (float)5, 5 }, new[] { (float)5, 5, 5 })]
+    [InlineData(new[] { (float)0, 0, 6 }, new[] { (float)5, 5 }, new[] { (float)0, 0, 6 })]
+    [InlineData(new[] { (float)0, 0, 7 }, new[] { (float)5, 5 }, new[] { (float)0, 0, 7 })]
     public void MoveRover_ValidInput_CorrectVectorOut(
         float[] currentBearing, float[] gridSize,
         float[] expectedBearing)
@@ -86,6 +94,9 @@ public class MarsRoverServiceTests
 
     [Theory]
     [InlineData(new[] { (float)0, 0, 4 }, "0 0 N")]
+    [InlineData(new[] { (float)5, 1, 5 }, "5 1 E")]
+    [InlineData(new[] { (float)60, 1000, 6 }, "60 1000 S")]
+    [InlineData(new[] { (float)9, 9, 7 }, "9 9 W")]
     public void CreateFinalBearingMessage_ValidInput_CorrectStringOutput(
         float[] finalBearing,
         string expectedMessage)
