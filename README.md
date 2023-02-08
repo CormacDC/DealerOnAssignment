@@ -8,14 +8,16 @@ This program is a .NET console application that was built with .NET SDK version 
 
 ## Assumptions
 
-
+1. Input & output may be in text files
+2. Input is correctly formatted & valid as detailed in the "Example Input" section of the assignment, with no spaces at the end of each line and no empty lines
+3. The rover will ignore any directions that cause it to move off of the plateau grid
 
 ## Running
 
 1. Clone this repo to your desired directory
 2. In a console or terminal, navigate to the directory where this repo is located on your machine
 3. A sample input text file has been provided in the /DealerOnAssignment/Inputs/ directory, but feel free to replace this with your own input
-4. Enter `dotnet run` if no changes were made to the inputs.txt file name; if changes were made enter `dotnet run [NewFileName.txt]`
+4. Enter `dotnet run` if no changes were made to the input file name; if changes were made or if you wish to use a different input file, enter `dotnet run [NewFileName.txt]` (the new file must still be in the Inputs/ directory)
 5. The output will be logged as an individual text file in the /DealerOnAssignment/Outputs/ directory
 
 ## The Assignment
@@ -58,5 +60,6 @@ Once each rover has received and completely executed its given instructions, it 
 
 5 1 E
 
-## Final Thoughts and Reflections
+## Design Explanation, Final Thoughts, & Reflections
 
+This was an extremely enjoyable challenge. I have a lot of familiarity with coding in .NET C# from my experiences at BoomTown ROI, LLC, however this is one of the few times I've had the opportunity to design & implement the architecture of the entire project. Because of this opportunity, I did my best to pull all the stops on good design principles. The application runs via a host object in order to encapsulate the app's resources and lifetime functionality and allow for dependency injection, logging, and configuration. I separated the service & its interface into its own Services/ directory, and created an Xunit project to provide unit tests for the service's public methods with testable business logic. If I had to do it all over or had more time, I would put more emphasis on increasing the algorithm's time and space complexities, as they both run on the order of O(n^2). I would also look further into the idiomatic nuances of C#, such as possibly using a different data type than Vector2/3 and/or using different methods of vector manipulation and floating point number handling. That being said, I am quite happy with the end product and am extremely grateful to DealerOn for this learning opportunity.
