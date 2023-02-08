@@ -67,4 +67,20 @@ public class MarsRoverServiceTests
                     && finalBearingVector.Y - expectedBearing[1] < 0.001
                     && finalBearingVector.Z - expectedBearing[2] < 0.001);
     }
+
+    [Theory]
+    [InlineData(new[] { (float)0, 0, 4 }, new[] { (float)5, 5 }, new[] { (float)0, 1, 4 })]
+    public void MoveRover_ValidInput_CorrectVectorOut(
+        float[] currentBearing, float[] gridSize,
+        float[] expectedBearing)
+    {
+        var currentBearingVector = new Vector3(currentBearing[0], currentBearing[1], currentBearing[2]);
+        var gridSizeVector = new Vector2(gridSize[0], gridSize[1]);
+
+        var finalBearingVector = _MarsRoverService.MoveRover(currentBearingVector, gridSizeVector);
+
+        Assert.True(finalBearingVector.X - expectedBearing[0] < 0.001
+                    && finalBearingVector.Y - expectedBearing[1] < 0.001
+                    && finalBearingVector.Z - expectedBearing[2] < 0.001);
+    }
 }
