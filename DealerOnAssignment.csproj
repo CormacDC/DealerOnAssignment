@@ -13,6 +13,7 @@
 
   <ItemGroup>
 	<Folder Include="Inputs\" />
+	<Folder Include="Services\" />
 	<Folder Include="Outputs\" />
   </ItemGroup>
 
