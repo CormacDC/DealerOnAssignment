@@ -7,7 +7,7 @@ namespace DealerOnAssignment
     {
         static void Main(string[] args)
         {
-            var inputFileName = args.Length == 0 ? args[0] : null;
+            var inputFileName = args.Length == 0 ? $"Inputs/{args[0]}" : null;
 
             var host = Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>

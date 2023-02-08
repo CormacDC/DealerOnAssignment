@@ -29,6 +29,8 @@ namespace DealerOnAssignment
             // get the text from the input file
             var inputFileName = fileName ?? _config.GetValue<string>("InputFileName")!;
 
+            _log.LogInformation("Reading from {inFile}...", inputFileName);
+
             var input = File.ReadAllText(inputFileName);
             var inputArray = input.Split(
                 new string[] { "\r\n", "\r", "\n" },
@@ -49,7 +51,8 @@ namespace DealerOnAssignment
                 LogFinalBearing(finalBearing, outputFileName);
             }
 
-            _log.LogInformation("All rovers have finished moving.");
+            _log.LogInformation("All rovers have finished moving. " +
+                "Final positions and bearings have been logged to {outFile}.", outputFileName);
         }
 
         public Vector2 ConvertGridSizeToVector(string gridSize)
